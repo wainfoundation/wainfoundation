@@ -22,7 +22,7 @@
             font-family: 'Inter', sans-serif;
             background: #f5f7fa;
             color: #1a1a2e;
-            line-height: 1.5;
+            line-height: 1.6;
             font-size: clamp(16px, 2.5vw, 18px);
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
@@ -194,9 +194,9 @@
             background: linear-gradient(135deg, #1e3a8a, #7c3aed);
             color: #fff;
             text-align: center;
-            padding: clamp(4rem, 10vw, 8rem) 1.5rem;
+            padding: clamp(4rem, 10vw, 6rem) 1.5rem;
             position: relative;
-            min-height: 80vh;
+            min-height: 70vh;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -215,36 +215,35 @@
         .hero-content {
             max-width: 900px;
             margin: 0 auto;
-            animation: fadeInUp 1s ease-out;
         }
         .hero h1 {
-            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-size: clamp(2rem, 6vw, 3.5rem);
             font-weight: 800;
             margin-bottom: 1.5rem;
             line-height: 1.2;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
         .hero p {
-            font-size: clamp(1.1rem, 3vw, 1.5rem);
+            font-size: clamp(1rem, 3vw, 1.25rem);
             max-width: 600px;
             margin: 0 auto 2rem;
             opacity: 0.9;
         }
         .cta-buttons {
             display: flex;
-            gap: 1.5rem;
+            gap: 1rem;
             justify-content: center;
             flex-wrap: wrap;
         }
         .cta {
             background: #3b82f6;
             color: #fff;
-            padding: 1rem 2rem;
-            border-radius: 12px;
+            padding: 0.8rem 1.5rem;
+            border-radius: 10px;
             font-weight: 600;
             font-size: clamp(14px, 2.5vw, 16px);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            min-width: 160px;
+            min-width: 140px;
             text-align: center;
             transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
         }
@@ -264,49 +263,55 @@
 
         /* Content Sections */
         section {
-            padding: clamp(3rem, 8vw, 5rem) 1.5rem;
+            padding: clamp(2rem, 6vw, 4rem) 1.5rem;
+            background: #fff;
+            margin: 1rem 0;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        section[role="region"] {
             opacity: 0;
             transform: translateY(20px);
             transition: opacity 0.6s ease, transform 0.6s ease;
         }
-        section.animate {
+        section[role="region"].animate {
             opacity: 1;
             transform: translateY(0);
         }
         h2 {
-            font-size: clamp(2rem, 5vw, 2.5rem);
+            font-size: clamp(1.8rem, 4vw, 2.25rem);
             font-weight: 700;
             text-align: center;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             color: #1a1a2e;
         }
         p {
             max-width: 800px;
-            margin: 0 auto 1.5rem;
+            margin: 0 auto 1.25rem;
             color: #4b5e7a;
-            font-size: clamp(16px, 2.5vw, 18px);
+            font-size: clamp(15px, 2.5vw, 17px);
         }
         .section-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.25rem;
+            margin-bottom: 1.5rem;
         }
         .card {
-            background: #fff;
-            border-radius: 16px;
-            padding: 1.5rem;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            background: #f9fafb;
+            border-radius: 12px;
+            padding: 1.25rem;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         .card:hover, .card:focus-within {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.15);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
         }
         .card h3 {
-            font-size: clamp(1.3rem, 3vw, 1.5rem);
+            font-size: clamp(1.2rem, 2.5vw, 1.4rem);
             font-weight: 600;
             margin-bottom: 0.75rem;
+            color: #1a1a2e;
         }
         .card p, .card ul {
             font-size: clamp(14px, 2vw, 16px);
@@ -314,19 +319,19 @@
         }
         .card ul {
             list-style: disc;
-            padding-left: 1.5rem;
+            padding-left: 1.25rem;
             margin-bottom: 1rem;
         }
         .card button, .card a.cta {
             background: #3b82f6;
             color: #fff;
-            padding: 0.8rem 1.5rem;
-            border-radius: 10px;
+            padding: 0.75rem 1.25rem;
+            border-radius: 8px;
             font-weight: 500;
-            font-size: clamp(14px, 2vw, 16px);
-            display: inline-block;
+            font-size: clamp(14px, 2vw, 15px);
+            display: block;
             text-align: center;
-            width: 100%;
+            transition: background 0.3s ease, transform 0.2s ease;
         }
         .card button:hover, .card button:focus, .card a.cta:hover, .card a.cta:focus {
             background: #2563eb;
@@ -335,50 +340,52 @@
         .dapp-header {
             display: flex;
             align-items: center;
-            gap: 1rem;
-            margin-bottom: 1rem;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
         }
         .dapp-icon {
-            width: 48px;
-            height: 48px;
+            width: 40px;
+            height: 40px;
             background: #3b82f6;
             color: #fff;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 12px;
+            border-radius: 10px;
             font-weight: 700;
+            font-size: 1rem;
         }
         .dapp-status {
-            font-size: clamp(14px, 2vw, 15px);
+            font-size: clamp(13px, 2vw, 14px);
             color: #6b7280;
-            margin-bottom: 1rem;
+            margin-bottom: 0.75rem;
         }
         .badge {
             background: #e6f0fa;
             color: #3b82f6;
-            padding: 0.3rem 0.8rem;
-            border-radius: 12px;
+            padding: 0.25rem 0.75rem;
+            border-radius: 10px;
             margin-left: 0.5rem;
             font-size: clamp(12px, 1.5vw, 13px);
         }
         .ledger-table {
             width: 100%;
             border-collapse: collapse;
-            background: #fff;
-            border-radius: 16px;
+            background: #f9fafb;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
         .ledger-table th, .ledger-table td {
-            padding: 1rem;
+            padding: 0.75rem;
             text-align: left;
             border-bottom: 1px solid #e5e7eb;
-            font-size: clamp(14px, 2vw, 16px);
+            font-size: clamp(13px, 2vw, 14px);
         }
         .ledger-table th {
-            background: #f9fafb;
+            background: #e5e7eb;
             font-weight: 600;
+            color: #1a1a2e;
         }
         .audit-status { color: #10b981; }
         .audit-status.pending { color: #f59e0b; }
@@ -391,7 +398,7 @@
             left: 0;
             width: 100%;
             background: #1a1a2e;
-            padding: 0.75rem 0;
+            padding: 0.5rem 0;
             z-index: 1000;
             box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.2);
         }
@@ -415,21 +422,21 @@
             color: #3b82f6;
         }
         .bottom-nav svg {
-            width: 24px;
-            height: 24px;
+            width: 22px;
+            height: 22px;
         }
 
         /* Back to Top */
         .back-to-top {
             position: fixed;
             bottom: 5rem;
-            right: 1.5rem;
+            right: 1rem;
             background: #3b82f6;
             color: #fff;
             border-radius: 50%;
-            width: 48px;
-            height: 48px;
-            font-size: 1.5rem;
+            width: 44px;
+            height: 44px;
+            font-size: 1.25rem;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -450,7 +457,7 @@
         footer {
             background: #1a1a2e;
             color: #fff;
-            padding: 3rem 1.5rem;
+            padding: 2rem 1.5rem;
         }
         .footer-content {
             max-width: 1440px;
@@ -458,23 +465,23 @@
         }
         .footer-columns {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.25rem;
+            margin-bottom: 1.5rem;
         }
         .footer-column h3 {
-            font-size: clamp(1.2rem, 2.5vw, 1.3rem);
+            font-size: clamp(1.1rem, 2vw, 1.2rem);
             font-weight: 600;
-            margin-bottom: 1rem;
+            margin-bottom: 0.75rem;
         }
         .footer-column ul {
             list-style: none;
         }
         .footer-column a {
             color: #d1d5db;
-            font-size: clamp(14px, 2vw, 15px);
+            font-size: clamp(13px, 2vw, 14px);
             display: block;
-            margin-bottom: 0.8rem;
+            margin-bottom: 0.5rem;
             transition: color 0.3s ease;
         }
         .footer-column a:hover, .footer-column a:focus {
@@ -486,14 +493,14 @@
             justify-content: space-between;
             align-items: center;
             border-top: 1px solid #2a2a4e;
-            padding-top: 1.5rem;
+            padding-top: 1rem;
             gap: 1rem;
+            font-size: clamp(13px, 2vw, 14px);
         }
         .social-links, .legal-links, .copyright-lang {
             display: flex;
             align-items: center;
-            gap: 1rem;
-            font-size: clamp(14px, 2vw, 15px);
+            gap: 0.75rem;
         }
         .social-links a, .legal-links a {
             color: #d1d5db;
@@ -508,7 +515,7 @@
             border: none;
             padding: 0.5rem;
             border-radius: 8px;
-            font-size: clamp(14px, 2vw, 15px);
+            font-size: clamp(13px, 2vw, 14px);
         }
 
         /* Animations */
@@ -524,7 +531,13 @@
                 justify-content: center;
             }
             .hero {
-                min-height: 70vh;
+                min-height: 60vh;
+            }
+            .section-grid {
+                gap: 1.5rem;
+            }
+            .card {
+                padding: 1.5rem;
             }
         }
 
@@ -538,11 +551,11 @@
                 position: fixed;
                 top: 0;
                 right: -100%;
-                width: 80%;
-                max-width: 320px;
+                width: 75%;
+                max-width: 300px;
                 height: 100%;
                 background: #1a1a2e;
-                padding: 4rem 1.5rem;
+                padding: 3rem 1.25rem;
                 transition: right 0.4s ease;
                 z-index: 1000;
                 overflow-y: auto;
@@ -552,75 +565,85 @@
             }
             .main-nav ul {
                 flex-direction: column;
-                gap: 1.5rem;
+                gap: 1.25rem;
             }
             .main-nav a {
-                font-size: clamp(16px, 3vw, 18px);
-                padding: 0.75rem 1rem;
+                font-size: clamp(15px, 3vw, 17px);
+                padding: 0.75rem;
                 display: block;
             }
             .profile-icon {
                 margin-left: auto;
             }
             .profile-dropdown {
-                right: 1.5rem;
+                right: 1rem;
                 top: calc(100% + 0.5rem);
             }
             .hero {
-                min-height: calc(100vh - 64px);
-                padding: 3rem 1rem;
+                min-height: calc(100vh - 60px);
+                padding: 2.5rem 1rem;
             }
             .hero h1 {
-                font-size: clamp(2rem, 8vw, 3rem);
+                font-size: clamp(1.8rem, 7vw, 2.5rem);
             }
             .hero p {
-                font-size: clamp(1rem, 4vw, 1.2rem);
+                font-size: clamp(0.95rem, 3vw, 1.1rem);
             }
             .cta-buttons {
                 flex-direction: column;
-                gap: 1rem;
+                gap: 0.75rem;
             }
             .cta {
                 min-width: 100%;
-                padding: 0.8rem;
+                padding: 0.75rem;
             }
             .bottom-nav {
                 display: block;
             }
             section {
-                padding: 2rem 1rem;
+                padding: 1.5rem 1rem;
+                margin: 0.75rem 0;
             }
             h2 {
-                font-size: clamp(1.8rem, 5vw, 2rem);
+                font-size: clamp(1.6rem, 4vw, 1.8rem);
             }
-            .ledger-table {
-                font-size: clamp(13px, 2vw, 14px);
+            .section-grid {
+                gap: 1rem;
+            }
+            .card {
+                padding: 1rem;
             }
             .ledger-table th:nth-child(4), .ledger-table td:nth-child(4) {
                 display: none;
             }
             .ledger-table th, .ledger-table td {
-                padding: 0.75rem;
+                padding: 0.5rem;
             }
             .back-to-top {
-                bottom: 7rem;
+                bottom: 6rem;
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
             }
         }
         @media (max-width: 480px) {
             .hero h1 {
-                font-size: clamp(1.8rem, 7vw, 2.5rem);
+                font-size: clamp(1.6rem, 6vw, 2rem);
             }
             .hero p {
-                font-size: clamp(0.95rem, 3.5vw, 1.1rem);
+                font-size: clamp(0.9rem, 3vw, 1rem);
             }
             .logo {
-                font-size: clamp(1.2rem, 4vw, 1.5rem);
+                font-size: clamp(1.1rem, 3.5vw, 1.3rem);
             }
             .main-nav a {
-                font-size: clamp(15px, 3vw, 16px);
+                font-size: clamp(14px, 3vw, 16px);
             }
             .card {
-                padding: 1rem;
+                padding: 0.75rem;
+            }
+            .section-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -666,9 +689,9 @@
         </div>
     </header>
     <main>
-        <section class="hero">
+        <section class="hero" role="region" aria-labelledby="hero-heading">
             <div class="hero-content container">
-                <h1>Empowering the Pi Ecosystem</h1>
+                <h1 id="hero-heading">Empowering the Pi Ecosystem</h1>
                 <p>Join us in building a transparent, decentralized future with secure wallets and innovative DApps.</p>
                 <div class="cta-buttons">
                     <a href="/dapps.html" class="cta">Explore DApps</a>
@@ -676,9 +699,9 @@
                 </div>
             </div>
         </section>
-        <section class="vision" id="vision">
+        <section class="vision" id="vision" role="region" aria-labelledby="vision-heading">
             <div class="container">
-                <h2>Our Vision</h2>
+                <h2 id="vision-heading">Our Vision</h2>
                 <p>We envision a global Pi ecosystem that drives financial inclusion through secure, beta-tested DApps, empowering billions in a transparent digital economy.</p>
                 <div class="section-grid">
                     <div class="card">
@@ -697,9 +720,9 @@
                 <a href="/vision.html" class="cta">Learn More</a>
             </div>
         </section>
-        <section class="mission" id="mission">
+        <section class="mission" id="mission" role="region" aria-labelledby="mission-heading">
             <div class="container">
-                <h2>Our Mission</h2>
+                <h2 id="mission-heading">Our Mission</h2>
                 <p>We empower the Pi community with audited custodial wallets, open-source collaboration, and innovative DApps in beta testing.</p>
                 <div class="section-grid">
                     <div class="card">
@@ -718,9 +741,9 @@
                 <a href="/mission.html" class="cta">Discover Our Mission</a>
             </div>
         </section>
-        <section class="dapps" id="dapps">
+        <section class="dapps" id="dapps" role="region" aria-labelledby="dapps-heading">
             <div class="container">
-                <h2>Our DApps (Beta)</h2>
+                <h2 id="dapps-heading">Our DApps (Beta)</h2>
                 <div class="section-grid">
                     <div class="card">
                         <div class="dapp-header">
@@ -750,16 +773,15 @@
                         </ul>
                         <button onclick="window.location.href='/docs/truthweb.html'">View Documentation</button>
                     </div>
-                    <!-- Add other DApps similarly -->
                 </div>
                 <a href="/dapps.html" class="cta">View All DApps</a>
             </div>
         </section>
-        <section class="ledger" id="ledger">
+        <section class="ledger" id="ledger" role="region" aria-labelledby="ledger-heading">
             <div class="container">
-                <h2>Ledger Transparency</h2>
+                <h2 id="ledger-heading">Ledger Transparency</h2>
                 <p>Our custodial wallets are audited for transparency. Explore our transaction ledger below.</p>
-                <table class="ledger-table">
+                <table class="ledger-table" role="grid">
                     <thead>
                         <tr>
                             <th>Wallet Address</th>
@@ -792,7 +814,6 @@
                 <a href="/ledger.html" class="cta">View Full Ledger</a>
             </div>
         </section>
-        <!-- Other sections (Donation, Hall of Fame, etc.) follow similar card-based structure -->
     </main>
     <nav class="bottom-nav">
         <ul>
