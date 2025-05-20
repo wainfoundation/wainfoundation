@@ -1,0 +1,33 @@
+/* Add to existing styles.css */
+.docs {
+    max-width: 1280px;
+    margin: 3rem auto;
+    padding: 1.5rem;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+.docs h2 {
+    font-size: clamp(1.8rem, 5vw, 2.5rem);
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #1a1a2e;
+}
+.docs-content {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: clamp(16px, 2.5vw, 18px);
+    color: #4b5e7a;
+}
+@media (max-width: 768px) {
+    .docs {
+        padding: 1rem;
+    }
+    .docs h2 {
+        font-size: clamp(1.6rem, 4vw, 2rem);
+    }
+    .docs-content {
+        font-size: clamp(15px, 2.5vw, 16px);
+    }
+}
