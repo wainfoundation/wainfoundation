@@ -57,7 +57,7 @@
             color: #fff;
             z-index: 1000;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-            padding: 0.5rem 0;
+            padding: 0.75rem 0;
         }
         .nav-container {
             display: flex;
@@ -71,11 +71,13 @@
             background: linear-gradient(45deg, #3b82f6, #a855f7);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 8px rgba(59, 130, 246, 0.5);
             padding: 0.5rem;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, text-shadow 0.3s ease;
         }
         .logo:hover, .logo:focus {
             transform: scale(1.05);
+            text-shadow: 0 0 12px rgba(59, 130, 246, 0.7);
         }
         .hamburger {
             display: none;
@@ -84,8 +86,8 @@
             border-radius: 50%;
         }
         .hamburger-icon {
-            width: 24px;
-            height: 24px;
+            width: 28px;
+            height: 20px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -109,31 +111,36 @@
         .main-nav {
             flex-grow: 1;
             display: flex;
-            justify-content: flex-end;
+            justify-content: center;
         }
         .main-nav ul {
             display: flex;
             list-style: none;
-            gap: 1rem;
+            gap: 1.5rem;
             margin: 0;
         }
         .main-nav a {
             color: #fff;
             font-weight: 500;
             font-size: clamp(14px, 2vw, 16px);
-            padding: 0.5rem 1rem;
+            padding: 0.75rem 1rem;
             border-radius: 8px;
-            transition: background 0.3s ease, color 0.3s ease;
+            transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease;
         }
         .main-nav a:hover, .main-nav a:focus, .main-nav a[aria-current="page"] {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.15);
             color: #3b82f6;
+            transform: translateY(-2px);
         }
         .profile-icon {
             background: rgba(255, 255, 255, 0.1);
             padding: 0.5rem;
             border-radius: 50%;
             position: relative;
+            transition: background 0.3s ease;
+        }
+        .profile-icon:hover, .profile-icon:focus {
+            background: rgba(255, 255, 255, 0.2);
         }
         .profile-icon svg {
             stroke: #fff;
@@ -148,7 +155,7 @@
             background: #2a2a4e;
             border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-            min-width: 160px;
+            min-width: 180px;
             z-index: 1000;
         }
         .profile-dropdown.active {
@@ -156,9 +163,10 @@
         }
         .profile-dropdown a {
             display: block;
-            padding: 0.75rem 1rem;
+            padding: 0.75rem 1.25rem;
             color: #fff;
-            font-size: 14px;
+            font-size: clamp(14px, 2vw, 15px);
+            transition: background 0.3s ease, color 0.3s ease;
         }
         .profile-dropdown a:hover, .profile-dropdown a:focus {
             background: #3b82f6;
@@ -170,7 +178,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.6);
             opacity: 0;
             visibility: hidden;
             transition: opacity 0.4s ease, visibility 0.4s ease;
@@ -188,11 +196,11 @@
             text-align: center;
             padding: clamp(4rem, 10vw, 8rem) 1.5rem;
             position: relative;
-            overflow: hidden;
-            min-height: 100vh;
+            min-height: 80vh;
             display: flex;
             align-items: center;
             justify-content: center;
+            overflow: hidden;
         }
         .hero::before {
             content: '';
@@ -205,7 +213,7 @@
             pointer-events: none;
         }
         .hero-content {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             animation: fadeInUp 1s ease-out;
         }
@@ -238,6 +246,7 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
             min-width: 160px;
             text-align: center;
+            transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
         }
         .cta.secondary {
             background: transparent;
@@ -253,7 +262,7 @@
             color: #1e3a8a;
         }
 
-        /* Sections (Minimal Updates for Consistency) */
+        /* Content Sections */
         section {
             padding: clamp(3rem, 8vw, 5rem) 1.5rem;
             opacity: 0;
@@ -277,22 +286,81 @@
             color: #4b5e7a;
             font-size: clamp(16px, 2.5vw, 18px);
         }
-        .dapp-grid, .fame-grid, .announcement-grid, .bounty-grid, .community-grid, .metrics-grid, .badge-grid, .testimonial-grid, .faq-grid {
+        .section-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 1.5rem;
             margin-bottom: 2rem;
         }
-        .dapp-card, .fame-card, .announcement-card, .bounty-card, .community-card, .metric-card, .badge-card, .testimonial-card, .faq-card {
+        .card {
             background: #fff;
             border-radius: 16px;
             padding: 1.5rem;
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        .dapp-card:hover, .fame-card:hover, .announcement-card:hover, .bounty-card:hover, .community-card:hover, .metric-card:hover, .badge-card:hover, .testimonial-card:hover, .faq-card:hover {
+        .card:hover, .card:focus-within {
             transform: translateY(-5px);
             box-shadow: 0 10px 24px rgba(0, 0, 0, 0.15);
+        }
+        .card h3 {
+            font-size: clamp(1.3rem, 3vw, 1.5rem);
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+        .card p, .card ul {
+            font-size: clamp(14px, 2vw, 16px);
+            color: #4b5e7a;
+        }
+        .card ul {
+            list-style: disc;
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .card button, .card a.cta {
+            background: #3b82f6;
+            color: #fff;
+            padding: 0.8rem 1.5rem;
+            border-radius: 10px;
+            font-weight: 500;
+            font-size: clamp(14px, 2vw, 16px);
+            display: inline-block;
+            text-align: center;
+            width: 100%;
+        }
+        .card button:hover, .card button:focus, .card a.cta:hover, .card a.cta:focus {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+        .dapp-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        .dapp-icon {
+            width: 48px;
+            height: 48px;
+            background: #3b82f6;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            font-weight: 700;
+        }
+        .dapp-status {
+            font-size: clamp(14px, 2vw, 15px);
+            color: #6b7280;
+            margin-bottom: 1rem;
+        }
+        .badge {
+            background: #e6f0fa;
+            color: #3b82f6;
+            padding: 0.3rem 0.8rem;
+            border-radius: 12px;
+            margin-left: 0.5rem;
+            font-size: clamp(12px, 1.5vw, 13px);
         }
         .ledger-table {
             width: 100%;
@@ -314,50 +382,8 @@
         }
         .audit-status { color: #10b981; }
         .audit-status.pending { color: #f59e0b; }
-        .dapp-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
-        .dapp-icon {
-            width: 48px;
-            height: 48px;
-            background: #3b82f6;
-            color: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 12px;
-            font-weight: 700;
-        }
-        .dapp-card h3 { font-size: clamp(1.3rem, 3vw, 1.5rem); font-weight: 600; }
-        .dapp-status { font-size: clamp(14px, 2vw, 15px); color: #6b7280; margin-bottom: 1rem; }
-        .badge {
-            background: #e6f0fa;
-            color: #3b82f6;
-            padding: 0.3rem 0.8rem;
-            border-radius: 12px;
-            margin-left: 0.5rem;
-            font-size: clamp(12px, 1.5vw, 13px);
-        }
-        .dapp-features {
-            list-style: disc;
-            padding-left: 1.5rem;
-            margin-bottom: 1.5rem;
-            color: #4b5e7a;
-            font-size: clamp(14px, 2vw, 16px);
-        }
-        .dapp-card button {
-            background: #3b82f6;
-            color: #fff;
-            padding: 0.8rem 1.5rem;
-            border-radius: 10px;
-            width: 100%;
-            font-weight: 500;
-            font-size: clamp(14px, 2vw, 16px);
-        }
-        .dapp-card button:hover, .dapp-card button:focus {
-            background: #2563eb;
-            transform: translateY(-2px);
-        }
 
-        /* Bottom Navigation (Mobile App-Like) */
+        /* Bottom Navigation (Mobile) */
         .bottom-nav {
             display: none;
             position: fixed;
@@ -376,13 +402,14 @@
         }
         .bottom-nav a {
             color: #fff;
-            font-size: 14px;
+            font-size: clamp(12px, 2vw, 13px);
             padding: 0.5rem;
             text-align: center;
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 0.25rem;
+            transition: color 0.3s ease;
         }
         .bottom-nav a:hover, .bottom-nav a:focus, .bottom-nav a.active {
             color: #3b82f6;
@@ -419,7 +446,7 @@
             background: #2563eb;
         }
 
-        /* Footer (Minimal Updates) */
+        /* Footer */
         footer {
             background: #1a1a2e;
             color: #fff;
@@ -448,6 +475,7 @@
             font-size: clamp(14px, 2vw, 15px);
             display: block;
             margin-bottom: 0.8rem;
+            transition: color 0.3s ease;
         }
         .footer-column a:hover, .footer-column a:focus {
             color: #3b82f6;
@@ -469,6 +497,7 @@
         }
         .social-links a, .legal-links a {
             color: #d1d5db;
+            transition: color 0.3s ease;
         }
         .social-links a:hover, .social-links a:focus, .legal-links a:hover, .legal-links a:focus {
             color: #3b82f6;
@@ -488,10 +517,22 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        /* Desktop Styles */
+        @media (min-width: 769px) {
+            .main-nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .hero {
+                min-height: 70vh;
+            }
+        }
+
         /* Mobile Styles */
         @media (max-width: 768px) {
             .hamburger {
                 display: block;
+                order: -1;
             }
             .main-nav {
                 position: fixed;
@@ -522,11 +563,11 @@
                 margin-left: auto;
             }
             .profile-dropdown {
-                right: 1rem;
+                right: 1.5rem;
                 top: calc(100% + 0.5rem);
             }
             .hero {
-                min-height: calc(100vh - 60px);
+                min-height: calc(100vh - 64px);
                 padding: 3rem 1rem;
             }
             .hero h1 {
@@ -552,8 +593,14 @@
             h2 {
                 font-size: clamp(1.8rem, 5vw, 2rem);
             }
+            .ledger-table {
+                font-size: clamp(13px, 2vw, 14px);
+            }
             .ledger-table th:nth-child(4), .ledger-table td:nth-child(4) {
                 display: none;
+            }
+            .ledger-table th, .ledger-table td {
+                padding: 0.75rem;
             }
             .back-to-top {
                 bottom: 7rem;
@@ -571,6 +618,9 @@
             }
             .main-nav a {
                 font-size: clamp(15px, 3vw, 16px);
+            }
+            .card {
+                padding: 1rem;
             }
         }
     </style>
@@ -626,11 +676,24 @@
                 </div>
             </div>
         </section>
-        <!-- Remaining sections unchanged, styled for consistency -->
         <section class="vision" id="vision">
             <div class="container">
                 <h2>Our Vision</h2>
                 <p>We envision a global Pi ecosystem that drives financial inclusion through secure, beta-tested DApps, empowering billions in a transparent digital economy.</p>
+                <div class="section-grid">
+                    <div class="card">
+                        <h3>Global Reach</h3>
+                        <p>Accessible DApps for users worldwide.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Transparency</h3>
+                        <p>Audited wallets and open ledgers.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Innovation</h3>
+                        <p>Cutting-edge Web3 solutions.</p>
+                    </div>
+                </div>
                 <a href="/vision.html" class="cta">Learn More</a>
             </div>
         </section>
@@ -638,28 +701,56 @@
             <div class="container">
                 <h2>Our Mission</h2>
                 <p>We empower the Pi community with audited custodial wallets, open-source collaboration, and innovative DApps in beta testing.</p>
+                <div class="section-grid">
+                    <div class="card">
+                        <h3>Security</h3>
+                        <p>Robust wallet protections.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Collaboration</h3>
+                        <p>Open-source contributions.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Accessibility</h3>
+                        <p>User-friendly DApps.</p>
+                    </div>
+                </div>
                 <a href="/mission.html" class="cta">Discover Our Mission</a>
             </div>
         </section>
         <section class="dapps" id="dapps">
             <div class="container">
                 <h2>Our DApps (Beta)</h2>
-                <div class="dapp-grid">
-                    <div class="dapp-card">
+                <div class="section-grid">
+                    <div class="card">
                         <div class="dapp-header">
                             <div class="dapp-icon">QP</div>
                             <h3>Quantum Pay</h3>
                         </div>
                         <div class="dapp-status">In Beta Test<span class="badge">Beta</span></div>
                         <p>Decentralized payment platform for secure Pi transactions.</p>
-                        <ul class="dapp-features">
+                        <ul>
                             <li>Fast payment processing</li>
                             <li>Secure wallet integration</li>
                             <li>Merchant support</li>
                         </ul>
                         <button onclick="window.location.href='/docs/quantumpay.html'">View Documentation</button>
                     </div>
-                    <!-- Other DApp cards unchanged -->
+                    <div class="card">
+                        <div class="dapp-header">
+                            <div class="dapp-icon">TW</div>
+                            <h3>TruthWeb</h3>
+                        </div>
+                        <div class="dapp-status">In Beta Test<span class="badge">Beta</span></div>
+                        <p>Social platform for authentic content on Pi Network.</p>
+                        <ul>
+                            <li>Content verification</li>
+                            <li>User rewards</li>
+                            <li>Community moderation</li>
+                        </ul>
+                        <button onclick="window.location.href='/docs/truthweb.html'">View Documentation</button>
+                    </div>
+                    <!-- Add other DApps similarly -->
                 </div>
                 <a href="/dapps.html" class="cta">View All DApps</a>
             </div>
@@ -701,7 +792,7 @@
                 <a href="/ledger.html" class="cta">View Full Ledger</a>
             </div>
         </section>
-        <!-- Other sections (Donation, Hall of Fame, etc.) unchanged -->
+        <!-- Other sections (Donation, Hall of Fame, etc.) follow similar card-based structure -->
     </main>
     <nav class="bottom-nav">
         <ul>
