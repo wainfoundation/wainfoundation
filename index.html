@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Mrwain Organization - Empowering the Pi Ecosystem</title>
+    <meta name="description" content="Mrwain Organization drives innovation in the Pi ecosystem with secure wallets, transparent ledgers, and cutting-edge DApps in beta.">
+    <meta property="og:title" content="Mrwain Organization - Empowering the Pi Ecosystem">
+    <meta property="og:description" content="Join us in building a transparent, decentralized future with Pi-powered DApps.">
+    <meta property="og:image" content="https://www.mrwain.xyz/assets/og-image.jpg">
+    <meta property="og:url" content="https://www.mrwain.xyz">
+    <meta name="twitter:card" content="summary_large_image">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f5f7fa;
+            color: #1a1a2e;
+            line-height: 1.5;
+            font-size: clamp(16px, 2.5vw, 18px);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+        a {
+            text-decoration: none;
+            color: #3b82f6;
+            transition: color 0.3s ease, transform 0.2s ease;
+        }
+        a:hover, a:focus {
+            color: #2563eb;
+            transform: translateY(-2px);
+        }
+        button {
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s ease;
+            min-height: 48px;
+            min-width: 48px;
+        }
+        .container {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            background: linear-gradient(135deg, #1a1a2e, #2a2a4e);
+            color: #fff;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            padding: 0.5rem 0;
+        }
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+        .logo {
+            font-size: clamp(1.5rem, 4vw, 1.8rem);
+            font-weight: 700;
+            background: linear-gradient(45deg, #3b82f6, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            padding: 0.5rem;
+            transition: transform 0.3s ease;
+        }
+        .logo:hover, .logo:focus {
+            transform: scale(1.05);
+        }
+        .hamburger {
+            display: none;
+            background: transparent;
+            padding: 0.75rem;
+            border-radius: 50%;
+        }
+        .hamburger-icon {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .hamburger-icon span {
+            width: 100%;
+            height: 3px;
+            background: #fff;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+        .hamburger-icon.active span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+        .hamburger-icon.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger-icon.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+        .main-nav {
+            flex-grow: 1;
+            display: flex;
+            justify-content: flex-end;
+        }
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1rem;
+            margin: 0;
+        }
+        .main-nav a {
+            color: #fff;
+            font-weight: 500;
+            font-size: clamp(14px, 2vw, 16px);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+        .main-nav a:hover, .main-nav a:focus, .main-nav a[aria-current="page"] {
+            background: rgba(255, 255, 255, 0.1);
+            color: #3b82f6;
+        }
+        .profile-icon {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.5rem;
+            border-radius: 50%;
+            position: relative;
+        }
+        .profile-icon svg {
+            stroke: #fff;
+            width: 24px;
+            height: 24px;
+        }
+        .profile-dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: #2a2a4e;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            min-width: 160px;
+            z-index: 1000;
+        }
+        .profile-dropdown.active {
+            display: block;
+        }
+        .profile-dropdown a {
+            display: block;
+            padding: 0.75rem 1rem;
+            color: #fff;
+            font-size: 14px;
+        }
+        .profile-dropdown a:hover, .profile-dropdown a:focus {
+            background: #3b82f6;
+            color: #fff;
+        }
+        .backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
+            z-index: 999;
+        }
+        .backdrop.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, #1e3a8a, #7c3aed);
+            color: #fff;
+            text-align: center;
+            padding: clamp(4rem, 10vw, 8rem) 1.5rem;
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.15), transparent);
+            pointer-events: none;
+        }
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            animation: fadeInUp 1s ease-out;
+        }
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        .hero p {
+            font-size: clamp(1.1rem, 3vw, 1.5rem);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+        }
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .cta {
+            background: #3b82f6;
+            color: #fff;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: clamp(14px, 2.5vw, 16px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            min-width: 160px;
+            text-align: center;
+        }
+        .cta.secondary {
+            background: transparent;
+            border: 2px solid #fff;
+        }
+        .cta:hover, .cta:focus {
+            background: #2563eb;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+        }
+        .cta.secondary:hover, .cta.secondary:focus {
+            background: #fff;
+            color: #1e3a8a;
+        }
+
+        /* Sections (Minimal Updates for Consistency) */
+        section {
+            padding: clamp(3rem, 8vw, 5rem) 1.5rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        section.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        h2 {
+            font-size: clamp(2rem, 5vw, 2.5rem);
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #1a1a2e;
+        }
+        p {
+            max-width: 800px;
+            margin: 0 auto 1.5rem;
+            color: #4b5e7a;
+            font-size: clamp(16px, 2.5vw, 18px);
+        }
+        .dapp-grid, .fame-grid, .announcement-grid, .bounty-grid, .community-grid, .metrics-grid, .badge-grid, .testimonial-grid, .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .dapp-card, .fame-card, .announcement-card, .bounty-card, .community-card, .metric-card, .badge-card, .testimonial-card, .faq-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .dapp-card:hover, .fame-card:hover, .announcement-card:hover, .bounty-card:hover, .community-card:hover, .metric-card:hover, .badge-card:hover, .testimonial-card:hover, .faq-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.15);
+        }
+        .ledger-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        }
+        .ledger-table th, .ledger-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+            font-size: clamp(14px, 2vw, 16px);
+        }
+        .ledger-table th {
+            background: #f9fafb;
+            font-weight: 600;
+        }
+        .audit-status { color: #10b981; }
+        .audit-status.pending { color: #f59e0b; }
+        .dapp-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+        .dapp-icon {
+            width: 48px;
+            height: 48px;
+            background: #3b82f6;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            font-weight: 700;
+        }
+        .dapp-card h3 { font-size: clamp(1.3rem, 3vw, 1.5rem); font-weight: 600; }
+        .dapp-status { font-size: clamp(14px, 2vw, 15px); color: #6b7280; margin-bottom: 1rem; }
+        .badge {
+            background: #e6f0fa;
+            color: #3b82f6;
+            padding: 0.3rem 0.8rem;
+            border-radius: 12px;
+            margin-left: 0.5rem;
+            font-size: clamp(12px, 1.5vw, 13px);
+        }
+        .dapp-features {
+            list-style: disc;
+            padding-left: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: #4b5e7a;
+            font-size: clamp(14px, 2vw, 16px);
+        }
+        .dapp-card button {
+            background: #3b82f6;
+            color: #fff;
+            padding: 0.8rem 1.5rem;
+            border-radius: 10px;
+            width: 100%;
+            font-weight: 500;
+            font-size: clamp(14px, 2vw, 16px);
+        }
+        .dapp-card button:hover, .dapp-card button:focus {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        /* Bottom Navigation (Mobile App-Like) */
+        .bottom-nav {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: #1a1a2e;
+            padding: 0.75rem 0;
+            z-index: 1000;
+            box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.2);
+        }
+        .bottom-nav ul {
+            display: flex;
+            justify-content: space-around;
+            list-style: none;
+        }
+        .bottom-nav a {
+            color: #fff;
+            font-size: 14px;
+            padding: 0.5rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        .bottom-nav a:hover, .bottom-nav a:focus, .bottom-nav a.active {
+            color: #3b82f6;
+        }
+        .bottom-nav svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        /* Back to Top */
+        .back-to-top {
+            position: fixed;
+            bottom: 5rem;
+            right: 1.5rem;
+            background: #3b82f6;
+            color: #fff;
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        .back-to-top.visible {
+            opacity: 1;
+        }
+        .back-to-top:hover, .back-to-top:focus {
+            transform: scale(1.1);
+            background: #2563eb;
+        }
+
+        /* Footer (Minimal Updates) */
+        footer {
+            background: #1a1a2e;
+            color: #fff;
+            padding: 3rem 1.5rem;
+        }
+        .footer-content {
+            max-width: 1440px;
+            margin: 0 auto;
+        }
+        .footer-columns {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-column h3 {
+            font-size: clamp(1.2rem, 2.5vw, 1.3rem);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        .footer-column ul {
+            list-style: none;
+        }
+        .footer-column a {
+            color: #d1d5db;
+            font-size: clamp(14px, 2vw, 15px);
+            display: block;
+            margin-bottom: 0.8rem;
+        }
+        .footer-column a:hover, .footer-column a:focus {
+            color: #3b82f6;
+        }
+        .footer-bottom {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #2a2a4e;
+            padding-top: 1.5rem;
+            gap: 1rem;
+        }
+        .social-links, .legal-links, .copyright-lang {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: clamp(14px, 2vw, 15px);
+        }
+        .social-links a, .legal-links a {
+            color: #d1d5db;
+        }
+        .social-links a:hover, .social-links a:focus, .legal-links a:hover, .legal-links a:focus {
+            color: #3b82f6;
+        }
+        .language-selector select {
+            background: #2a2a4e;
+            color: #fff;
+            border: none;
+            padding: 0.5rem;
+            border-radius: 8px;
+            font-size: clamp(14px, 2vw, 15px);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+            .main-nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                max-width: 320px;
+                height: 100%;
+                background: #1a1a2e;
+                padding: 4rem 1.5rem;
+                transition: right 0.4s ease;
+                z-index: 1000;
+                overflow-y: auto;
+            }
+            .main-nav.active {
+                right: 0;
+            }
+            .main-nav ul {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            .main-nav a {
+                font-size: clamp(16px, 3vw, 18px);
+                padding: 0.75rem 1rem;
+                display: block;
+            }
+            .profile-icon {
+                margin-left: auto;
+            }
+            .profile-dropdown {
+                right: 1rem;
+                top: calc(100% + 0.5rem);
+            }
+            .hero {
+                min-height: calc(100vh - 60px);
+                padding: 3rem 1rem;
+            }
+            .hero h1 {
+                font-size: clamp(2rem, 8vw, 3rem);
+            }
+            .hero p {
+                font-size: clamp(1rem, 4vw, 1.2rem);
+            }
+            .cta-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .cta {
+                min-width: 100%;
+                padding: 0.8rem;
+            }
+            .bottom-nav {
+                display: block;
+            }
+            section {
+                padding: 2rem 1rem;
+            }
+            h2 {
+                font-size: clamp(1.8rem, 5vw, 2rem);
+            }
+            .ledger-table th:nth-child(4), .ledger-table td:nth-child(4) {
+                display: none;
+            }
+            .back-to-top {
+                bottom: 7rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: clamp(1.8rem, 7vw, 2.5rem);
+            }
+            .hero p {
+                font-size: clamp(0.95rem, 3.5vw, 1.1rem);
+            }
+            .logo {
+                font-size: clamp(1.2rem, 4vw, 1.5rem);
+            }
+            .main-nav a {
+                font-size: clamp(15px, 3vw, 16px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="backdrop"></div>
+    <header>
+        <div class="nav-container container">
+            <button class="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
+                <div class="hamburger-icon">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </button>
+            <div class="logo">Mrwain Organization</div>
+            <button class="profile-icon" aria-label="User profile" aria-expanded="false">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2">
+                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                </svg>
+            </button>
+            <div class="profile-dropdown">
+                <a href="/profile.html">Profile</a>
+                <a href="/settings.html">Settings</a>
+                <a href="/logout.html">Logout</a>
+            </div>
+            <nav aria-label="Main navigation" class="main-nav">
+                <ul>
+                    <li><a href="/" aria-current="page">Home</a></li>
+                    <li><a href="/vision.html">Vision</a></li>
+                    <li><a href="/mission.html">Mission</a></li>
+                    <li><a href="/dapps.html">DApps</a></li>
+                    <li><a href="/ledger.html">Ledger</a></li>
+                    <li><a href="/donation.html">Donations</a></li>
+                    <li><a href="/hall-of-fame.html">Hall of Fame</a></li>
+                    <li><a href="/future-plans.html">Future Plans</a></li>
+                    <li><a href="/announcement.html">Announcements</a></li>
+                    <li><a href="/about.html">About</a></li>
+                    <li><a href="/community.html">Community</a></li>
+                    <li><a href="/chain.html">Chain</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <section class="hero">
+            <div class="hero-content container">
+                <h1>Empowering the Pi Ecosystem</h1>
+                <p>Join us in building a transparent, decentralized future with secure wallets and innovative DApps.</p>
+                <div class="cta-buttons">
+                    <a href="/dapps.html" class="cta">Explore DApps</a>
+                    <a href="/donation.html" class="cta secondary">Support Us</a>
+                </div>
+            </div>
+        </section>
+        <!-- Remaining sections unchanged, styled for consistency -->
+        <section class="vision" id="vision">
+            <div class="container">
+                <h2>Our Vision</h2>
+                <p>We envision a global Pi ecosystem that drives financial inclusion through secure, beta-tested DApps, empowering billions in a transparent digital economy.</p>
+                <a href="/vision.html" class="cta">Learn More</a>
+            </div>
+        </section>
+        <section class="mission" id="mission">
+            <div class="container">
+                <h2>Our Mission</h2>
+                <p>We empower the Pi community with audited custodial wallets, open-source collaboration, and innovative DApps in beta testing.</p>
+                <a href="/mission.html" class="cta">Discover Our Mission</a>
+            </div>
+        </section>
+        <section class="dapps" id="dapps">
+            <div class="container">
+                <h2>Our DApps (Beta)</h2>
+                <div class="dapp-grid">
+                    <div class="dapp-card">
+                        <div class="dapp-header">
+                            <div class="dapp-icon">QP</div>
+                            <h3>Quantum Pay</h3>
+                        </div>
+                        <div class="dapp-status">In Beta Test<span class="badge">Beta</span></div>
+                        <p>Decentralized payment platform for secure Pi transactions.</p>
+                        <ul class="dapp-features">
+                            <li>Fast payment processing</li>
+                            <li>Secure wallet integration</li>
+                            <li>Merchant support</li>
+                        </ul>
+                        <button onclick="window.location.href='/docs/quantumpay.html'">View Documentation</button>
+                    </div>
+                    <!-- Other DApp cards unchanged -->
+                </div>
+                <a href="/dapps.html" class="cta">View All DApps</a>
+            </div>
+        </section>
+        <section class="ledger" id="ledger">
+            <div class="container">
+                <h2>Ledger Transparency</h2>
+                <p>Our custodial wallets are audited for transparency. Explore our transaction ledger below.</p>
+                <table class="ledger-table">
+                    <thead>
+                        <tr>
+                            <th>Wallet Address</th>
+                            <th>Amount (Pi)</th>
+                            <th>Date</th>
+                            <th class="audit-status">Audit Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><a href="https://blockexplorer.minepi.com/address/[REAL_ADDRESS_1]" target="_blank">Pi1...a2b3</a></td>
+                            <td>1,000</td>
+                            <td>2025-04-15</td>
+                            <td class="audit-status">Audited</td>
+                        </tr>
+                        <tr>
+                            <td><a href="https://blockexplorer.minepi.com/address/[REAL_ADDRESS_2]" target="_blank">Pi2...c4d5</a></td>
+                            <td>500</td>
+                            <td>2025-04-10</td>
+                            <td class="audit-status pending">Pending</td>
+                        </tr>
+                        <tr>
+                            <td><a href="https://blockexplorer.minepi.com/address/[REAL_ADDRESS_3]" target="_blank">Pi3...e6f7</a></td>
+                            <td>2,000</td>
+                            <td>2025-04-05</td>
+                            <td class="audit-status">Audited</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <a href="/ledger.html" class="cta">View Full Ledger</a>
+            </div>
+        </section>
+        <!-- Other sections (Donation, Hall of Fame, etc.) unchanged -->
+    </main>
+    <nav class="bottom-nav">
+        <ul>
+            <li><a href="/" class="active" aria-current="page">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+                Home
+            </a></li>
+            <li><a href="/dapps.html">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 8h4V4H4v4zm6 12h4v-4h-4v4zm-6 0h4v-4H4v4zm0-6h4v-4H4v4zm6 0h4v-4h-4v4zm6-10v4h4V4h-4zm-6 4h4V4h-4v4zm6 6h4v-4h-4v4zm0 6h4v-4h-4v4z"/></svg>
+                DApps
+            </a></li>
+            <li><a href="/community.html">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+                Community
+            </a></li>
+            <li><a href="/donation.html">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
+                Donate
+            </a></li>
+        </ul>
+    </nav>
+    <button class="back-to-top" aria-label="Back to top">↑</button>
+    <footer>
+        <div class="footer-content container">
+            <div class="footer-columns">
+                <div class="footer-column">
+                    <h3>About Us</h3>
+                    <ul>
+                        <li><a href="/about.html">Our Story</a></li>
+                        <li><a href="/vision.html">Vision</a></li>
+                        <li><a href="/mission.html">Mission</a></li>
+                        <li><a href="/future-plans.html">Roadmap</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>DApps & Transparency</h3>
+                    <ul>
+                        <li><a href="/dapps.html">Our DApps</a></li>
+                        <li><a href="/ledger.html">Ledger Transparency</a></li>
+                        <li><a href="https://github.com/wainfoundation">Source Code</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Developers</h3>
+                    <ul>
+                        <li><a href="/bounties.html">Bounties</a></li>
+                        <li><a href="https://github.com/wainfoundation">GitHub</a></li>
+                        <li><a href="/community.html#hackathons">Hackathons</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Community</h3>
+                    <ul>
+                        <li><a href="/community.html">Join Us</a></li>
+                        <li><a href="/hall-of-fame.html">Hall of Fame</a></li>
+                        <li><a href="/announcement.html">Announcements</a></li>
+                        <li><a href="/donation.html">Donate</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Connect</h3>
+                    <ul>
+                        <li><a href="https://x.com/wainfoundation">X</a></li>
+                        <li><a href="https://discord.gg/q37VBF5fjU" target="_blank">Discord</a></li>
+                        <li><a href="https://www.linkedin.com/in/wainfoundation-9a30b9367/" target="_blank">LinkedIn</a></li>
+                        <li><a href="mailto:mrwainorganization@gmail.com">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="social-links">
+                    <span>Follow Us:</span>
+                    <a href="https://x.com/wainfoundation" aria-label="Follow us on X">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                        </svg>
+                    </a>
+                    <a href="https://discord.gg/q37VBF5fjU" aria-label="Join our Discord">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.4336-.4447 1.0066-.6088 1.4689a18.5558 18.5558 0 00-5.487 0c-.1642-.4623-.3978-1.0354-.6088-1.4689a.0751.0751 0 00-.0785-.0371 19.7913 19.7913 0 00-4.8851 1.5152.0696.0696 0 00-.0323.0277C.5337 9.0458-.319 13.5799.0991 18.0578a.0824.0824 0 00.0312.0561c2.0318 1.5138 4.0736 2.4969 6.1003 3.2052a.0771.0771 0 00.0839-.0249c.4667-.6178.9149-1.2798 1.2791-1.9756a.0761.0761 0 00-.0413-.1057c-.6522-.2946-1.2739-.6065-1.8722-.9128a.0741.0741 0 01-.0206-.0927c.1262-.1678.2524-.3177.3858-.476a.0751.0751 0 01.0894-.0112c3.9268 1.7967 8.1837 1.7967 12.1045 0a.0751.0751 0 01.0894.0112c.1334.1583.2596.3082.3858.476a.0741.0741 0 01-.0206.0927c-.5983.3063-1.22.6182-1.8722.9128a.0761.0761 0 00-.0413.1057c.3642.6958.8124 1.3578 1.2791 1.9756a.0771.0771 0 00.0839.0249c2.0267-.7083 4.0685-1.6914 6.1003-3.2052a.0824.0824 0 00.0312-.0561c.4609-4.9519-.5457-9.4624-3.4964-13.6882a.0696.0696 0 00-.0323-.0277zM8.918 15.6897c-1.1884 0-2.1623-1.0789-2.1623-2.4045s.9659-2.4045 2.1623-2.4045c1.1964 0 2.1623 1.0789 2.1623 2.4045s-.9659 2.4045-2.1623 2.4045zm6.164 0c-1.1884 0-2.1623-1.0789-2.1623-2.4045s.9659-2.4045 2.1623-2.4045c1.1964 0 2.1623 1.0789 2.1623 2.4045s-.9659 2.4045-2.1623 2.4045z"/>
+                        </svg>
+                    </a>
+                    <a href="https://www.linkedin.com/in/wainfoundation-9a30b9367/" aria-label="Connect on LinkedIn">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-1.337-.029-3.058-1.867-3.058-1.867 0-2.152 1.459-2.152 2.968v5.694h-3v-11h2.879v1.508h.04c.401-.757 1.379-1.557 2.837-1.557 3.035 0 3.596 2.001 3.596 4.604v6.445z"/>
+                        </svg>
+                    </a>
+                </div>
+                <div class="legal-links">
+                    <a href="/privacy.html">Privacy Policy</a>
+                    <a href="/terms.html">Terms of Service</a>
+                    <a href="/cookies.html">Cookies Policy</a>
+                </div>
+                <div class="copyright-lang">
+                    <span>© 2025 Mrwain Organization. All rights reserved.</span>
+                    <div class="language-selector">
+                        <span class="lang-icon">🌐</span>
+                        <select aria-label="Select language">
+                            <option value="en">English</option>
+                            <option value="es">Español</option>
+                            <option value="fr">Français</option>
+                            <option value="zh">中文</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="/js/scripts.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js');
+        }
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
+    </script>
+</body>
+</html>
